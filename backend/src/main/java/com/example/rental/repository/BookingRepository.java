@@ -26,3 +26,6 @@ public interface BookingRepository extends MongoRepository<Booking, String> {
     // Find all bookings for reporting/admin
     List<Booking> findAll();
 }
+List<Booking> findByUserId(String userId){
+    
+}

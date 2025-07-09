@@ -44,4 +44,9 @@ public class AdminService {
             bookingRepository.save(booking);
         }
     }
+    public static void getPendingBookings() {
+        // This method should return a list of pending bookings for admin approval
+        // Implementation will depend on the BookingRepository methods available
+        return bookingRepository.findByStatus("Pending");
+    }
 }
