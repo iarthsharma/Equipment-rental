@@ -43,6 +43,7 @@ public class AdminController {
             return ResponseEntity.notFound().build();
         }
     }
+    @
 
     // (Optional) Get all users (admin management)
     // @GetMapping("/users")
