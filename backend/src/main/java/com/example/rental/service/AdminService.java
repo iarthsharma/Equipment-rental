@@ -1,6 +1,7 @@
 package com.example.rental.service;
 
 import com.example.rental.model.Booking;
+import com.example.rental.model.BookingStatus;
 import com.example.rental.model.User;
 import com.example.rental.repository.BookingRepository;
 import com.example.rental.repository.UserRepository;
@@ -29,24 +30,23 @@ public class AdminService {
         return userRepository.findByUserId(userId).orElse(null);
     }
 
-    public void approveBooking(Long bookingId) {
-        Booking booking = bookingRepository.findByUserId(bookingId).orElse(null);
+    public void approveBooking(String bookingId) {
+        Booking booking = bookingRepository.findById(bookingId).orElse(null);
         if (booking != null) {
-            booking.setStatus("Approved");
+            booking.setStatus(BookingStatus.APPROVED);
             bookingRepository.save(booking);
         }
     }
 
-    public void rejectBooking(Long bookingId) {
+    public void rejectBooking(String bookingId) {
         Booking booking = bookingRepository.findById(bookingId).orElse(null);
         if (booking != null) {
-            booking.setStatus("Rejected");
+            booking.setStatus(BookingStatus.REJECTED);
             bookingRepository.save(booking);
         }
     }
-    public static void getPendingBookings() {
-        // This method should return a list of pending bookings for admin approval
-        // Implementation will depend on the BookingRepository methods available
-        return bookingRepository.findByStatus("Pending");
+
+    public List<Booking> getPendingBookings() {
+        return bookingRepository.findByStatus(BookingStatus.PENDING);
     }
 }

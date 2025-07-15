@@ -23,6 +23,4 @@ public interface BookingRepository extends MongoRepository<Booking, String> {
     // Find bookings by status (e.g., pending, approved)
     List<Booking> findByStatus(String status);
 
-    // Find all bookings for reporting/admin
-    List<Booking> findAll();
 }
